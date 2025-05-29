@@ -1,4 +1,3 @@
-# Importing Libraries
 import numpy as np
 import math
 import cv2
@@ -58,52 +57,52 @@ class Application:
         self.root.geometry("1300x700")
 
         self.panel = tk.Label(self.root)
-        self.panel.place(x=100, y=3, width=480, height=640)
+        self.panel.place(x=120, y=80, width=400, height=350)
 
         self.panel2 = tk.Label(self.root)  # initialize image panel
-        self.panel2.place(x=700, y=115, width=400, height=400)
+        self.panel2.place(x=700, y=80, width=300, height=300)
 
         self.T = tk.Label(self.root)
         self.T.place(x=60, y=5)
         self.T.config(text="Sign Language To Text Conversion", font=("Courier", 30, "bold"))
 
         self.panel3 = tk.Label(self.root)  # Current Symbol
-        self.panel3.place(x=280, y=585)
+        self.panel3.place(x=280, y=460)
 
         self.T1 = tk.Label(self.root)
-        self.T1.place(x=10, y=580)
+        self.T1.place(x=10, y=460)
         self.T1.config(text="Character :", font=("Courier", 30, "bold"))
 
         self.panel5 = tk.Label(self.root)  # Sentence
-        self.panel5.place(x=260, y=632)
+        self.panel5.place(x=260, y=500)
 
         self.T3 = tk.Label(self.root)
-        self.T3.place(x=10, y=632)
+        self.T3.place(x=10, y=500)
         self.T3.config(text="Sentence :", font=("Courier", 30, "bold"))
 
         self.T4 = tk.Label(self.root)
-        self.T4.place(x=10, y=700)
+        self.T4.place(x=10, y=540)
         self.T4.config(text="Suggestions :", fg="red", font=("Courier", 30, "bold"))
 
 
         self.b1=tk.Button(self.root)
-        self.b1.place(x=390,y=700)
+        self.b1.place(x=350,y=540)
 
         self.b2 = tk.Button(self.root)
-        self.b2.place(x=590, y=700)
+        self.b2.place(x=520, y=540)
 
         self.b3 = tk.Button(self.root)
-        self.b3.place(x=790, y=700)
+        self.b3.place(x=690, y=540)
 
         self.b4 = tk.Button(self.root)
-        self.b4.place(x=990, y=700)
+        self.b4.place(x=830, y=540)
 
         self.speak = tk.Button(self.root)
-        self.speak.place(x=1305, y=630)
+        self.speak.place(x=1150, y=540)
         self.speak.config(text="Speak", font=("Courier", 20), wraplength=100, command=self.speak_fun)
 
         self.clear = tk.Button(self.root)
-        self.clear.place(x=1205, y=630)
+        self.clear.place(x=1030, y=540)
         self.clear.config(text="Clear", font=("Courier", 20), wraplength=100, command=self.clear_fun)
 
 
@@ -220,10 +219,12 @@ class Application:
             if hands:
                 # #print(" --------- lmlist=",hands[1])
                 hand = hands[0]
-                x, y, w, h = hand['bbox']
+                if isinstance(hand, dict) and 'bbox' in hand:
+                    x, y, w, h = hand['bbox']
+
                 image = cv2image_copy[y - offset:y + h + offset, x - offset:x + w + offset]
 
-                white = cv2.imread("C:\\Users\\devansh raval\\PycharmProjects\\pythonProject\\white.jpg")
+                white = cv2.imread("white.jpg")
                 # img_final=img_final1=img_final2=0
 
                 handz = hd2.findHands(image, draw=False, flipType=True)
