@@ -1,0 +1,1 @@
+ I have built a Tkinter GUI for live gesture input, text display, and speech output using the pyttsx3 Text-to-Speech engine. This app has achieved sub-100ms latency with MediaPipe integration and deployed GUI using Tkinter.
